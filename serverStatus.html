@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Vista Max Server Status</title>
+</head>
+<body style="background-color: #2F2E2C">
+
+<!-- Toolbar -->
+<div class="container-fluid">
+  <div class="row py-2 font-weight-bold text-white" style="background: #64725A;">
+    <div class="col-3">Update Interval:
+      <span class="pl-1">
+        <select disabled>
+          <option>30 Seconds</option>
+          <option>1 Min</option>
+          <option>5 Min</option>
+          <option>15 Min</option>
+        </select>
+      </span>
+    </div>
+    <div class="col-3">Last Update:
+      <span class="pl-1" id="statusLastUpdate">N/A</span>
+    </div>
+    <div class="col-3">Proxy Server:
+      <span class="pl-1" id="statusProxyIp"></span>
+      <span class="pl-1" id="statusProxyState"></span>
+    </div>
+    <div class="col-3">Ping Poll Device:
+      <span class="pl-1" id="statusPingPollIp"></span>
+      <span class="pl-1" id="statusPingPollState"></span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Network Infrastructure status -->
+<div class="container mt-4">
+
+    <h2 class="text-center text-white font-weight-bold">Network Infrastructure</h2>
+
+    <div class="row mb-3">
+        <div class="col-6 pl-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idswitch"></div>
+        </div>
+        <div class="col-6 pr-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idTestbox"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- server Status -->
+<div class="container mt-4">
+
+    <h2 class="text-center text-white font-weight-bold">Servers</h2>
+
+    <div class="row mb-3">
+        <div class="col-12 rounded p-4 font-weight-bold text-center" id="idAmfnodes"></div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 rounded p-4 font-weight-bold text-center" id="idAmfCM"></div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 rounded p-4 font-weight-bold text-center" id="idVista"></div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 rounded p-4 font-weight-bold text-center" id="idAp"></div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 rounded p-4 font-weight-bold text-center" id="idSnmp"></div>
+    </div>
+
+</div>
+
+<!-- Sim nodes status -->
+<div class="container mt-4">
+
+    <h2 class="text-center text-white font-weight-bold">Simulation Nodes</h2>
+
+    <div class="row mb-3">
+        <div class="col-2 pl-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idSimController"></div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa1"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa2"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa3"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa4"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa5"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa6"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa7"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa8"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa9"></div>
+            </div>
+        </div>
+        <div class="col-1 pr-0">
+            <div class="row">
+                <div class=" rounded p-4 font-weight-bold text-center" id="idSimVaa10"></div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="row mb-3">
+        <div class="col-2 pl-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idSimAp1"></div>
+        </div>
+        <div class="col-2 pl-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idSimAp2"></div>
+        </div>
+        <div class="col-2 pl-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idSimAp3"></div>
+        </div>
+        <div class="col-2 pl-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idSimAp4"></div>
+        </div>
+        <div class="col-2 pl-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idSimAp5"></div>
+        </div>
+        <div class="col-2 pl-0 pr-0">
+            <div class="rounded p-4 font-weight-bold text-center" id="idSimAp6"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Physical Node status -->
+<div class="container mt-4">
+    <h2 class="text-center text-white font-weight-bold">Real Nodes</h2>
+
+    <div class="row mb-3">
+        <div class="col-12 rounded p-4 font-weight-bold text-center" id="idRealHubMaster"></div>
+    </div>
+
+  </div>
+
+<div class="container mt-4">
+
+    <div class="row rounded p1" style="background-color: #64725A">
+      <div class="col text-white">
+        <h2 class="text-center text-white font-weight-bold">Information:</h2>
+        <p>
+
+        </p>
+      </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<!-- Optional JavaScript -->
+<script>
+    const SERVER_COLOR_DOWN = "salmon";
+    const SERVER_COLOR_UP = "lightgreen";
+    const SERVER_COLOR_ABNORMAL = "#ffff80"
+    const SERVER_COLOR_UNKNOWN = "lightgrey";
+
+    //urls
+    const API_PROXY_IP = "10.36.250.112:8085";
+    const PING_POLL_IP = "10.38.27.2";
+    const PING_POLL_INSTANCES_APIURL = "https://" + PING_POLL_IP +"/api/v1/ping_polling/instances";
+    const PING_POLL_COUNTERS_APIURL = "https://" + PING_POLL_IP +"/api/v1/ping_polling/counters";
+    const API_PROXY_URL = 'http://' + API_PROXY_IP + '/proxy/post';
+
+    const UPDATE_INTERVAL = 30000;
+
+    // HTML elements
+    const DOM_STATUS_PROXYIP = $("#statusProxyIp");
+    const DOM_STATUS_PINGPOLL_IP = $("#statusPingPollIp");
+    const DOM_STATUS_PROXY_STATE = $("#statusProxyState");
+    const DOM_STATUS_PINGPOLL_STATE = $("#statusPingPollState");
+    const DOM_STATUS_LASTUPDATE = $("#statusLastUpdate");
+
+    // Server contructor
+    function Server(idProp, ipAddress, name, ipTooltip){
+        this.id = $('#' + idProp + '');
+        this.serverIp = ipAddress;
+        this.name = name;
+
+        // Jquery, set DOM properties (name, color)
+        this.id.css("background-color", SERVER_COLOR_UNKNOWN);// Default to grey
+
+        // if tooltip = true then exclude ip address in text and use tool top, otherwise include ip in text
+        if(ipTooltip){
+          this.id.text(name);
+	        this.id.attr('title', this.serverIp);
+        } else{
+          this.id.text(name + ' (' + this.serverIp + ')');
+        }
+
+
+        this.statusDown = function(){this.id.css("background-color", SERVER_COLOR_DOWN)};
+        this.statusUP = function(){this.id.css("background-color", SERVER_COLOR_UP)};
+        this.statusUnknown = function(){this.id.css("background-color", SERVER_COLOR_UNKNOWN)};
+        this.statusAbnormal = function(){this.id.css("background-color", SERVER_COLOR_ABNORMAL)};
+
+        this.updatePingStatus = function(statusValue){
+            //todo
+            if(statusValue === 'UP_STATE_UP'){
+                this.statusUP();
+            }else if (statusValue === 'UP_STATE_DOWN'){
+                this.statusDown();
+            } else if(statusValue === 'UP_STATE_CRITICAL_DOWN' || statusValue === 'UP_STATE_CRITICAL_UP'){
+              this.statusAbnormal();
+            } else{
+                this.statusUnknown();
+            }
+        }
+    }
+
+
+    // function finds the object in the array with the ipaddress value and returns the array index number
+    function findIP(array, ipAddress){
+        for(let i=0; i < array.length; i++){
+            if(array[i].serverIp === ipAddress){
+                return i;
+            }
+        }
+        return false;
+    } // End of findIP
+
+
+
+    $(document).ready(function(){
+
+
+      // update interval
+      apiCallInstances();
+      setInterval(function(){apiCallInstances()}, UPDATE_INTERVAL);
+
+      DOM_STATUS_PROXYIP.text(API_PROXY_IP);
+      DOM_STATUS_PINGPOLL_IP.text(PING_POLL_IP);
+
+      DOM_STATUS_PROXY_STATE.text("| unknown");
+      DOM_STATUS_PINGPOLL_STATE.text("| unknown");
+
+      // firt property = DOM id, Second property = server/pingpoll ip address
+        let serverArray =[
+            new Server('idswitch', '10.38.27.2', 'X950', false),
+            new Server('idTestbox', '10.38.27.1', 'TB282'),
+
+            new Server('idAmfnodes', '10.38.27.3', 'AMF-3K'),
+            new Server('idAmfCM', '10.38.27.4', "AMF-Controller/Master"),
+            new Server('idVista', '10.38.27.5', 'Vista'),
+            new Server('idAp', '10.38.27.6', 'AP-SIM-3K'),
+            new Server('idSnmp', '10.38.27.7', 'SNMP-SIM-2K'),
+            new Server('idSimController', '172.16.0.1', 'VAA-controller', true),
+
+            new Server('idSimVaa1', '172.16.1.1', 'VAA1', true),
+            new Server('idSimVaa2', '172.16.1.2', 'VAA2', true),
+            new Server('idSimVaa3', '172.16.1.3', 'VAA3', true),
+            new Server('idSimVaa4', '172.16.1.4', 'VAA4', true),
+            new Server('idSimVaa5', '172.16.1.5', 'VAA5', true),
+            new Server('idSimVaa6', '172.16.1.6', 'VAA6', true),
+            new Server('idSimVaa7', '172.16.1.7', 'VAA7', true),
+            new Server('idSimVaa8', '172.16.1.8', 'VAA8', true),
+            new Server('idSimVaa9', '172.16.1.9', 'VAA9', true),
+            new Server('idSimVaa10', '172.16.1.10', 'VAA10', true),
+
+
+            new Server('idSimAp1', '172.19.1.1', 'AP-Sim1', true),
+            new Server('idSimAp2', '172.19.3.1', 'AP-Sim2', true),
+            new Server('idSimAp3', '172.19.5.1', 'AP-Sim3', true),
+            new Server('idSimAp4', '172.19.7.1', 'AP-Sim4', true),
+            new Server('idSimAp5', '172.19.9.1', 'AP-Sim5', true),
+            new Server('idSimAp6', '172.19.11.1', 'AP-Sim6', true),
+
+            new Server('idRealHubMaster', '10.37.69.7', 'Hub & Spoke AMF Master', false),
+
+        ];
+
+        function updateAllServerStatus(pingPollData){
+
+            // reset all nodes to unknown status
+            for(let i=0; i < serverArray.length; i++){
+                serverArray[i].statusUnknown();
+            }
+
+            for(let i=0; i < pingPollData.length; i++){
+                console.log(pingPollData[i].config['device_ip']);
+                serverArray[findIP(serverArray, pingPollData[i].config['device_ip'])].updatePingStatus(pingPollData[i]['up_state']);
+                console.log(pingPollData[i]['up_state']);
+            }
+
+        }
+
+        function updatelastUpdate(){
+          let date = new Date;
+          DOM_STATUS_LASTUPDATE.text(date.toLocaleString());
+        }
+
+        function proxyDown(){
+          DOM_STATUS_PROXY_STATE.text("| DOWN!");
+
+          for(let i=0; i < serverArray.length; i++){
+              serverArray[i].statusUnknown();
+          }
+
+        }
+
+        function pingPollDown(){
+          DOM_STATUS_PINGPOLL_STATE.text("| DOWN!");
+
+          for(let i=0; i < serverArray.length; i++){
+              serverArray[i].statusUnknown();
+          }
+        }
+
+        function apiCallInstances(){
+          $.ajax({
+              url: API_PROXY_URL,
+              dataType: 'json',
+              type: 'post',
+              contentType: 'application/json',
+              data: JSON.stringify( { type: "get", url: PING_POLL_INSTANCES_APIURL } ),
+              processData: false,
+              success: function( data, textStatus, jQxhr ){
+
+                  console.log(data.error);
+                  if(data.error === "ECONNREFUSED" || data.error === "EHOSTUNREACH"){
+                    DOM_STATUS_PROXY_STATE.text("| Up")
+                    pingPollDown();
+                  } else{
+                    DOM_STATUS_PROXY_STATE.text("| Up")
+                    DOM_STATUS_PINGPOLL_STATE.text("| Up");
+                    updateAllServerStatus(data);
+                    updatelastUpdate();
+                  }
+
+              },
+              error: function( jqXhr, textStatus, errorThrown ){
+                  console.log( errorThrown );
+                  proxyDown();
+                  DOM_STATUS_PINGPOLL_STATE.text("| Unknown");
+                  //todo When api is unreachable set proxy nodesjs to down
+              }
+          });
+        }
+
+
+    });
+
+
+
+</script>
+
+</body>
+</html>
